@@ -1,6 +1,7 @@
 ### Tabla de contenidos
 
 - [Notes-app](#notes-app)
+- [Arquitectura](#arquitectura)
 - [Crear una imagen de Docker para la app](#crear-una-imagen-de-docker-para-la-app)
 - [Ejecutar la app en un contenedor](#ejecutar-la-app-en-un-contenedor)
 - [Subir la imagen a Docker Hub](#subir-la-imagen-a-docker-hub)
@@ -21,6 +22,16 @@ La app permite:
 2. Adjuntar imágenes a las notas.
 
 Las notas no se pierden si la app se reinicia. Las notas se almacenan en una base de datos MongoDB. Y se usa Multer para guardar las imágenes subidas.
+
+## Arquitectura
+
+![Arquitectura propuesta](./assets/arquitectura.drawio.svg)
+
+Se propone una arquitectura en Amazon EKS con
+
+- La aplicación con un load balancer para escalado horizontal
+- Un pod de tipo PersistVolumeClaim para mongo (notas)
+- Un pod de tipo PersistVolumeClaim para minio (imágenes)
 
 ## Crear una imagen de Docker para la app
 
